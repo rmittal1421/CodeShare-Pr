@@ -10,20 +10,20 @@
 
         <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
 
-        <style>
+        <style type="text/css">
 
             #top {
                 background-color: #EDEDED;
                 height: 35px;
                 border-bottom: 1px solid lightgrey;
             }
-            
+
             #logo {
                 padding: 6px;
                 float: left;
                 font-weight: bold;
             }
-            
+
             #buttons {
                 width: 300px;
                 margin: 0 auto;
@@ -40,20 +40,20 @@
                 border: 1px solid lightgrey;
                 border-radius: 10%;
             }
-            
+
             #html {
                 border-left: 1px solid lightgrey;
                 border-right: 1px solid lightgrey;
             }
-            
+
             #css {
                 border-right: 1px solid lightgrey;
             }
-            
+
             #javascript {
                 border-right: 1px solid lightgrey;
             }
-            
+
             #output {
                 border-right: 1px solid lightgrey;
             }
@@ -63,7 +63,7 @@
                 font-size: 18px;
                 padding: 0px;
             }
-            
+
             #login {
                 margin-top: 2px;
                 padding: 3px;
@@ -72,15 +72,15 @@
                 font-size: 14px;
                 margin-right: 5px;
             }
-            
+
             .chosen {
                 background-color: aliceblue;
             }
-            
+
             .highlighted {
                 background-color: lightgrey; 
             }
-            
+
             textarea {
                 border-top: white;
                 border-bottom: white;
@@ -88,18 +88,48 @@
                 font-size: 14px;
                 border-color: grey;
             }
-            
+
             .panel {
                 margin: none;
                 padding: 0px;
                 float: left;
                 width: 50%;
+                border-left: none;
             }
-            
+
             iframe {
                 border: none
             }
 
+            .notUsing {
+                display: none;
+            }
+
+            #nothing {
+                display: none;
+                position:fixed;
+                top: 50%;
+                left: 50%;
+                width:30em;
+                height:18em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+            }
+            
+            #create {
+                position: absolute;
+                font-weight: bold;
+                color: darkblue;
+                position: fixed;
+                left: 50%;
+                top: 30%;
+            }
+            
+            #pic {
+                position: absolute;
+                left: 35%;
+                top: 27%;
+            }
         </style>
 
     </head>
@@ -116,25 +146,42 @@
                 <div class="languages" id="javascript">JavaScript</div>
                 <div class="languages chosen" id="output">Output</div>
             </div>
-            
+
             <div id="login">Login or Register</div>
 
         </div>
-        
+
         <div id="codeContainer">
-            
-            <textarea id="htmlCode" class="panel">Hello World!</textarea>
+
+            <textarea id="htmlCode" class="panel"><p id = "para">Welcome!</p></textarea>
+            <textarea id="cssCode" class="panel notUsing">p {color : green;}</textarea>
+            <textarea id="javascriptCode" class="panel notUsing">document.getElementById ("para").innerHTML = "Hello from Raghav";</textarea>
             <iframe id="outputCode" class="panel"></iframe>
         </div>
 
+        <div id="nothing">
+            <p id="create">Created by : RM</p>
+            <img id="pic" src="My_Image.jpg" alt="Raghav Mittal's Photo">
+        </div>
+
         <script>
+
+            function updateOuput() {
+                $("iframe").contents().find("html").html("<html><head><style type='text/css'>" + $("#cssCode").val() + "</style></head><body>" + $("#htmlCode").val() + "</body></html>");
+
+                document.getElementById ("outputCode").contentWindow.eval($("#javascriptCode").val());
+            }
+
+            var noOfPanel = $(".notUsing").length;
+            noOfPanel = 4 - noOfPanel;
+
             $(".languages").hover( function () {
                 $(this).addClass ("highlighted");
             },
-                function () {
+                                  function () {
                 $(this).removeClass ("highlighted");
             });
-            
+
             $(".languages").click( function() {
                 if ($(this).hasClass ("chosen")) {
                     $(this).removeClass ("chosen");       
@@ -142,11 +189,34 @@
                 else {
                     $(this).addClass ("chosen");
                 }
+
+                var panelID = $(this).attr("id") + "Code";
+                $("#" + panelID).toggleClass ("notUsing");
+
+                noOfPanel = $(".notUsing").length;
+                noOfPanel = 4 - noOfPanel;
+
+                if (noOfPanel == 0) {
+                    $("#nothing").css ("display", "block");
+                    $("body").css ("background-color", "lightpink");
+                }
+                else {
+                    $("#nothing").css ("display", "none");
+                    $("body").css ("background-color", "white");
+                    $(".panel").width ($(window).width()/noOfPanel - 5);
+                }
             })
-            
+
             $(".panel").height ($(window).height() - $("#top").height() - 10);
-            
-            $(".panel").width ($(window).width() - $("textarea").width() - 5);
+
+            $(".panel").width ($(window).width()/2 - 5);
+
+            updateOuput();
+
+            $("textarea").on('change keyup paste', function() { 
+                updateOuput();
+            });
+
         </script>
 
     </body>
