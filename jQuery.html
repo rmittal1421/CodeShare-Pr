@@ -21,6 +21,7 @@
             #logo {
                 padding: 6px;
                 float: left;
+                font-weight: bold;
             }
             
             #buttons {
@@ -60,6 +61,7 @@
             body {
                 margin: 0px;
                 font-size: 18px;
+                padding: 0px;
             }
             
             #login {
@@ -68,6 +70,34 @@
                 background-color: yellow;
                 float: right;
                 font-size: 14px;
+                margin-right: 5px;
+            }
+            
+            .chosen {
+                background-color: aliceblue;
+            }
+            
+            .highlighted {
+                background-color: lightgrey; 
+            }
+            
+            textarea {
+                border-top: white;
+                border-bottom: white;
+                resize: none;
+                font-size: 14px;
+                border-color: grey;
+            }
+            
+            .panel {
+                margin: none;
+                padding: 0px;
+                float: left;
+                width: 50%;
+            }
+            
+            iframe {
+                border: none
             }
 
         </style>
@@ -81,18 +111,42 @@
             <div id="logo">CodePlayer</div>
 
             <div id="buttons">
-                <div class="languages" id="html">HTML</div>
+                <div class="languages chosen" id="html">HTML</div>
                 <div class="languages" id="css">CSS</div>
                 <div class="languages" id="javascript">JavaScript</div>
-                <div class="languages" id="output">Output</div>
+                <div class="languages chosen" id="output">Output</div>
             </div>
             
             <div id="login">Login or Register</div>
 
         </div>
+        
+        <div id="codeContainer">
+            
+            <textarea id="htmlCode" class="panel">Hello World!</textarea>
+            <iframe id="outputCode" class="panel"></iframe>
+        </div>
 
         <script>
-
+            $(".languages").hover( function () {
+                $(this).addClass ("highlighted");
+            },
+                function () {
+                $(this).removeClass ("highlighted");
+            });
+            
+            $(".languages").click( function() {
+                if ($(this).hasClass ("chosen")) {
+                    $(this).removeClass ("chosen");       
+                }
+                else {
+                    $(this).addClass ("chosen");
+                }
+            })
+            
+            $(".panel").height ($(window).height() - $("#top").height() - 10);
+            
+            $(".panel").width ($(window).width() - $("textarea").width() - 5);
         </script>
 
     </body>
