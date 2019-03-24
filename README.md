@@ -17,7 +17,7 @@ Follow the following steps to get started with the appliction:
 
 # Technical Information
 
-The application is designed using HTML, CSS, JS and jQuery. There is no back end as of now but there is some future work required to be done. There is no database used and the information is used in a .csv file where user can copy and paste the code to the local machine.
+The application is designed using HTML, CSS, JS and jQuery. There is no back end as of now but there is some future work required to be done. There is no database used and the information is stored in a .csv file where user can copy and paste the code to the local machine.
 
 # Contribute
 
