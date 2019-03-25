@@ -1,11 +1,24 @@
 # CodeShare-Pr
 
-The UX programmers face some problem while working with HTML/CSS/JS and other UX designing frameworks. These problems include things like coding the whole thing in a single file which makes it hard to maintain and build on. Along with this, it is hard to go to html page in the google chrome and see the output for the change they made. So this project is a tool where you are provided different windows to write your UX code and you can write all your different code in different windows and see the output right away.
+The UX programmers face some problem while working with HTML/CSS/JS and other UX designing frameworks. The main problems are as following: -
+- Writing the combined code in a single file
+- Check the output on different windows on the local machine
+- Hard to maintain and build on
+- Hard to understand for a new user
+
+This project is a tool where you are provided different windows to write your UX code and you can write all your different code in different windows and see the output right away.
 
 # Getting Started
 
-You just need to clone the repository into your local machine and then run the HTML file on a browser. Chrome is the more supported browser as of now. You can use this tool on your localhost and write code there and see the output right away. 
+Follow the following steps to get started with the appliction:
+- Clone the repository using: git clone `https://github.com/rmittal1421/CodeShare-Pr.git`
+- Run `jQuery.html` in your browser (preferably `Chrome`)
+- Use the application to write html, css, javascript etc. and see instant output on the screen
+
+# Technical Information
+
+The application is designed using HTML, CSS, JS and jQuery. There is no back end as of now but there is some future work required to be done. There is no database used and the information is stored in a .csv file where user can copy and paste the code to the local machine.
 
 # Contribute
 
-There is a scope of improvement in this project. Anyone is free to give suggestions or some work in order to make the user's code combined into one file which can be downloaded by the user and he doesn't need to copy and paster the whole text into the local machine editor. The UX can be improved along with the backend. It can be converted into a user applicatoin where they can make their accounts and keep their stuff online and they can access it whenever they would like to.
+There is a scope of improvement in this project. Suggestions are welcome along with the changes/updates. User can save the work done in the online portal and this work can become the new backend which can be implemented in the future.
